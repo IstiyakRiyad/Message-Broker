@@ -1,7 +1,7 @@
 # 
 <div align="center">
+  <h1><a href="https://www.rabbitmq.com/"><img width=30% src="https://www.rabbitmq.com/img/logo-rabbitmq.svg"></a></h1>
   <h1>Message Broker</h1>
-  <h2 color=orange><a href="https://www.rabbitmq.com/">RabbitMQ</a></h2>
   <p>
     This is simple message broker application using RabbitMQ. Here contains two dockerize nodejs application that communicate with the help of RabbitMQ
   </p>
@@ -34,14 +34,17 @@ docker-compose up
 docker-compose -f docker-compose-prod.yml build
 docker-compose -f docker-compose-prod.yml up
 
+# Down the containers(development):
+docker-compose down
 
-
-
+# Down the containers(production):
+docker-compose -f docker-compose-prod.yml down
 
 
 ```
-## Project Trafics
-* `<a href="http://localhost:8088" >Trafic</a>`
-* `dist/index.js` - Start point of production files
-* `coverage/lcov-report/index.html` - Testing coverage file(open with browser)
+## Project Trafics Management
+#### Go to <a href="http://localhost:8088">`http://localhost:8088`</a> in your local machine for rabbitmq management info
+<a href="http://localhost:8088" ><img width=150 src="https://www.rabbitmq.com/img/logo-rabbitmq.svg"></a>
+![Management](https://user-images.githubusercontent.com/54698049/191612701-eca71f41-fd6f-4cb6-8486-e4bc2a8bd7b3.png)
+
 
