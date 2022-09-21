@@ -23,6 +23,6 @@ const {
     let count = 1;
     setInterval(() => {
         ch1.sendToQueue('hi', Buffer.from('Hello there. The count value is ' + count++));
-    }, 10000);
+    }, 2000);
 
 })();

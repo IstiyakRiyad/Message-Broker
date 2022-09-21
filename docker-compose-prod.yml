@@ -26,9 +26,6 @@ services:
       RABBITMQ_USER: ${RABBITMQ_DEFAULT_USER}
       RABBITMQ_PASS: ${RABBITMQ_DEFAULT_PASS}
 
-    volumes:
-      - ./publisher:/usr/app
-
 
   consumer_prod:
     container_name: consumer_dev
@@ -44,6 +41,4 @@ services:
       RABBITMQ_PORT: 5672 
       RABBITMQ_USER: ${RABBITMQ_DEFAULT_USER}
       RABBITMQ_PASS: ${RABBITMQ_DEFAULT_PASS}
-    volumes:
-      - ./consumer:/usr/app
 
