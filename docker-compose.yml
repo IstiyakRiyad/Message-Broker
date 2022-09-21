@@ -1,0 +1,51 @@
+version: '3.1'
+
+services:
+  rabbit:
+    container_name: rabbit
+    hostname: rabbit
+    image: rabbitmq:3-management
+    ports:
+      - 8088:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    restart: always
+
+  publisher:
+    container_name: publisher
+    hostname: publisher
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./publisher
+    restart: always
+    depends_on:
+      - rabbit
+    environment:
+      RABBITMQ_HOST: rabbit
+      RABBITMQ_PORT: 5672 
+      RABBITMQ_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_PASS: ${RABBITMQ_DEFAULT_PASS}
+
+    volumes:
+      - ./publisher:/usr/app
+
+
+  consumer:
+    container_name: consumer
+    hostname: consumer
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./consumer
+    restart: always
+    depends_on:
+      - rabbit
+      - publisher
+    environment:
+      RABBITMQ_HOST: rabbit
+      RABBITMQ_PORT: 5672 
+      RABBITMQ_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_PASS: ${RABBITMQ_DEFAULT_PASS}
+    volumes:
+      - ./consumer:/usr/app
+
